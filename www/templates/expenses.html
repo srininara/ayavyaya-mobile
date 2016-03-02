@@ -1,0 +1,19 @@
+<ion-view view-title="Expenses">
+    <ion-content>
+        <ion-list>
+            <ion-item ng-repeat="expense in expensesList" ng-click="launchUpdate(expense)">
+                <h2><span class="green">Rs.{{expense.amount}} </span> on <span class="green">{{expense.expense_date | date : dd-MMM-yyyy }}</span></h2>
+                <h2><span class="green"> Spent on : {{expense.description || "Data Not Available"}}</span></h2>
+                <h3><span class="darkgreen">#{{expense.category || "uncategorized"}} - {{expense.subcategory || "?" }}</span></h3>
+                <h4><span class="darkgreen">* {{expense.nature || "nature not known"}}</span></h4>
+                <h4><span ng-repeat="tag in expense.tags">@{{tag.name}}</span></h4>
+            </ion-item>
+        </ion-list>
+        <ion-infinite-scroll
+            ng-if="true"
+            immediate-check="false"
+            on-infinite="loadExpenses()">
+        </ion-infinite-scroll>
+
+    </ion-content>
+</ion-view>
