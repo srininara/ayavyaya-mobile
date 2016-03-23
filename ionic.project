@@ -1,6 +1,12 @@
 {
   "name": "ayavyaya-mobile",
   "app_id": "",
+  "proxies":[
+    {
+        "path": "/api",
+        "proxyUrl": "http://192.168.1.44:8000/grihasthi/api/v1.0/"
+    }
+  ],
   "gulpStartupTasks": [
     "sass",
     "watch"
