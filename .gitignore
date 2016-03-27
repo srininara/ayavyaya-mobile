@@ -7,3 +7,4 @@ plugins/
 resources**/*.DS_Store
 .DS_Store
 npm-debug.log
+.brackets.json
