@@ -1,4 +1,9 @@
 <ion-view view-title="Expenses">
+    <ion-nav-buttons side="secondary">
+        <button class="button button-icon icon ion-plus" 
+            ui-sref="app.create">
+        </button>
+    </ion-nav-buttons>
     <ion-content>
         <ion-refresher
             pulling-text="Refresh..."
@@ -7,10 +12,10 @@
 
         <ion-list>
             <ion-item ng-repeat="expense in expensesList" ng-click="launchUpdate(expense)">
-                <h2><span class="green">Rs.{{expense.amount}} </span> on <span class="green">{{expense.expense_date | date : dd-MMM-yyyy }}</span></h2>
-                <h2><span class="green"> Spent on : {{expense.description || "Data Not Available"}}</span></h2>
-                <h3><span class="darkgreen">#{{expense.category || "uncategorized"}} - {{expense.subcategory || "?" }}</span></h3>
-                <h4><span class="darkgreen">* {{expense.nature || "nature not known"}}</span></h4>
+                <h2><span class="positive">Rs.{{expense.amount}} </span> on <span class="positive">{{expense.expense_date | date : dd-MMM-yyyy }}</span></h2>
+                <h2><span class="positive"> Spent on : {{expense.description || "Data Not Available"}}</span></h2>
+                <h3><span class="royal">#{{expense.category.name || "uncategorized"}} - {{expense.subcategory.name || "?" }}</span></h3>
+                <h4><span class="royal">* {{expense.nature.name || "nature not known"}}</span></h4>
                 <h4><span ng-repeat="tag in expense.tags">@{{tag.name}}</span></h4>
             </ion-item>
         </ion-list>

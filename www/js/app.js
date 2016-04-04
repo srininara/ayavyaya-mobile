@@ -19,6 +19,10 @@ angular.module('ayavyaya', [
     }
   });
 })
+.run(['$rootScope', '$state', '$stateParams', function ($rootScope, $state, $stateParams) {
+    $rootScope.$state = $state;
+    $rootScope.$stateParams = $stateParams;
+}])
 
 .config(function($stateProvider, $urlRouterProvider) {
   $stateProvider
@@ -29,7 +33,6 @@ angular.module('ayavyaya', [
     templateUrl: 'templates/menu.html',
     controller: 'MenuCtrl'
   })
-
   .state('app.expenseStats', {
       url: '/expenseStats',
       views: {
@@ -43,13 +46,22 @@ angular.module('ayavyaya', [
       url: '/expenses',
       views: {
         'menuContent': {
-          templateUrl: 'templates/expenses.html',
-          controller: 'ExpensesCtrl'
+            templateUrl: 'templates/expenses.html',
+            controller: 'ExpensesCtrl',
         }
       }
     })
-
-  .state('app.single', {
+  
+    .state('app.create', {
+        url: '/expenses/new',
+        views: {
+            'menuContent': {
+                templateUrl: 'templates/expense.html',
+                controller: 'ExpenseCtrl'
+            }
+        }
+  })
+  .state('app.update', {
     url: '/expenses/:expenseId',
     views: {
       'menuContent': {
