@@ -34,10 +34,10 @@ angular.module('ayavyaya.services.expenseService', ['ayavyaya.config',
       },
       'save': function(expenseRec, mode) {
         var d = $q.defer();
+        var copyExpenseRec = angular.copy(expenseRec);
+        copyExpenseRec.expense_date = $filter('date')(expenseRec.expense_date,
+          'yyyy-MM-dd');
         if (mode === "create") {
-          var copyExpenseRec = angular.copy(expenseRec);
-          copyExpenseRec.expense_date = $filter('date')(expenseRec.expense_date,
-            'yyyy-MM-dd');
           ExpenseDataAccessService.post(copyExpenseRec).then(function(
             addedExpense) {
             d.resolve(addedExpense);
@@ -46,8 +46,14 @@ angular.module('ayavyaya.services.expenseService', ['ayavyaya.config',
           });
         }
         if (mode === "update") {
-          console.log(expenseRec);
-          d.resolve(expenseRec);
+          ExpenseDataAccessService.customPUT(copyExpenseRec,
+            copyExpenseRec.id).then(
+            function(updatedExpense) {
+              d.resolve(updatedExpense);
+            },
+            function() {
+              d.reject("Something went wrong on update");
+            });
         }
         return d.promise;
       }
