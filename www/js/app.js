@@ -1,39 +1,40 @@
 angular.module('ayavyaya', [
-    'ionic', 
-    'ayavyaya.controllers',
-    'ayavyaya.services'
+  'ionic',
+  'ayavyaya.controllers',
+  'ayavyaya.services'
 ])
 
 .run(function($ionicPlatform) {
-  $ionicPlatform.ready(function() {
-    // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
-    // for form inputs)
-    if (window.cordova && window.cordova.plugins.Keyboard) {
-      cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
-      cordova.plugins.Keyboard.disableScroll(true);
+    $ionicPlatform.ready(function() {
+      // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
+      // for form inputs)
+      if (window.cordova && window.cordova.plugins.Keyboard) {
+        cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
+        cordova.plugins.Keyboard.disableScroll(true);
 
-    }
-    if (window.StatusBar) {
-      // org.apache.cordova.statusbar required
-      StatusBar.styleDefault();
-    }
-  });
-})
-.run(['$rootScope', '$state', '$stateParams', function ($rootScope, $state, $stateParams) {
+      }
+      if (window.StatusBar) {
+        // org.apache.cordova.statusbar required
+        StatusBar.styleDefault();
+      }
+    });
+  })
+  .run(['$rootScope', '$state', '$stateParams', function($rootScope, $state,
+    $stateParams) {
     $rootScope.$state = $state;
     $rootScope.$stateParams = $stateParams;
-}])
+  }])
 
 .config(function($stateProvider, $urlRouterProvider) {
   $stateProvider
 
     .state('app', {
-    url: '/app',
-    abstract: true,
-    templateUrl: 'templates/menu.html',
-    controller: 'MenuCtrl'
-  })
-  .state('app.expenseStats', {
+      url: '/app',
+      abstract: true,
+      templateUrl: 'templates/menu.html',
+      controller: 'MenuCtrl'
+    })
+    .state('app.expenseStats', {
       url: '/expenseStats',
       views: {
         'menuContent': {
@@ -46,30 +47,39 @@ angular.module('ayavyaya', [
       url: '/expenses',
       views: {
         'menuContent': {
-            templateUrl: 'templates/expenses.html',
-            controller: 'ExpensesCtrl',
+          templateUrl: 'templates/expenses.html',
+          controller: 'ExpensesCtrl',
         }
       }
     })
-  
-    .state('app.create', {
-        url: '/expenses/new',
-        views: {
-            'menuContent': {
-                templateUrl: 'templates/expense.html',
-                controller: 'ExpenseCtrl'
-            }
+
+  .state('app.create', {
+      url: '/expenses/new',
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/expense.html',
+          controller: 'ExpenseCtrl'
         }
-  })
-  .state('app.update', {
-    url: '/expenses/:expenseId',
-    views: {
-      'menuContent': {
-        templateUrl: 'templates/expense.html',
-        controller: 'ExpenseCtrl'
+      },
+      data: {
+        operation: "Create"
       }
-    }
-  });
+    })
+    .state('app.update', {
+      url: '/expenses/:expenseId',
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/expense.html',
+          controller: 'ExpenseCtrl'
+        }
+      },
+      params: {
+        currentExpense: null
+      },
+      data: {
+        operation: "Update"
+      }
+    });
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/app/expenses');
 });

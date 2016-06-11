@@ -1,5 +1,5 @@
 4-Mar-2016
-When load happens after 200 index, server throws a 400 error. need to handle that. - Handled but keeps scrolling forever and causes more problems - stream of requests - DOS attack. 
+When load happens after 200 index, server throws a 400 error. need to handle that. - Handled but keeps scrolling forever and causes more problems - stream of requests - DOS attack.
 
 
 GET http://192.168.1.44:9080/grihasthi/api/v1.0/expenses?index=250&size=50 400 (BAD REQUEST)
@@ -11,3 +11,6 @@ XMLHttpRequest cannot load http://192.168.1.44:9080/grihasthi/api/v1.0/expenses?
 
 23-Mar-2016
 Fixed it a long time back. Don't even know when exactly. Also finished with the refresh code as well
+
+
+

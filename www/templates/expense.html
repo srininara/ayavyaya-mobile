@@ -1,15 +1,15 @@
 <ion-view>
-    <ion-nav-title> {{$state.current.name == 'app.create'? 'Create': 'Update'}} Expense </ion-nav-title>
+    <ion-nav-title> {{$state.current.data.operation}} Expense </ion-nav-title>
     <ion-content>
         <form name="expenseForm" novalidate="" ng-submit="saveExpense(expenseForm)">
             <ion-list>
                 <label class="item item-input">
                     <span class="input-label">Expense Date</span >
-                    <input name="expenseDate" type="date" ng-model="expense.expense_date">
+                    <input type="date" ng-model="expense.expense_date">
                 </label>
                 <label class="item item-input">
                     <span class="input-label">Amount</span >
-                    <input name="amount" type="number" placeholder="How much" ng-model="expense.amount">
+                    <input type="number" placeholder="How much" ng-model="expense.amount">
                 </label>
                 <label class="item item-input">
                     <span class="input-label">Description</span >
@@ -17,27 +17,36 @@
                 </label>
                 <label class="item item-input item-select">
                     <span class="input-label">Category</span >
-                    <select id="category" ng-model="expense.category" ng-change="selectSubCategory(expense.category)" 
+                    <select ng-model="expense.category" ng-change="selectSubCategory(expense.category)"
                                 ng-options="category.name for category in categoryList track by category.id">
                     </select>
                 </label>
                 <label class="item item-input item-select">
                     <span class="input-label">Sub Category</span >
-                    <select id="subcategory" ng-disabled="!expense.category" ng-model="expense.subcategory" ng-options="subcategory.name for subcategory in subCategoryList track by subcategory.id">
+                    <select ng-disabled="!expense.category" ng-model="expense.subcategory"
+                        ng-options="subcategory.name for subcategory in subCategoryList track by subcategory.id">
                     </select>
                 </label>
                 <label class="item item-input item-select">
                     <span class="input-label">Nature</span >
-                    <select id="nature" ng-model="expense.nature" ng-options="nature.name for nature in natureList track by nature.id">
+                    <select ng-model="expense.nature" ng-options="nature.name for nature in natureList track by nature.id">
                     </select>
                 </label>
             </ion-list>
             <div class="padding" >
 				<button class="button button-positive button-block"
-				        type="submit" >Create
+				        type="submit" >{{$state.current.data.operation}}
 				</button >
 			</div >
 
         </form>
     </ion-content>
 </ion-view>
+
+<!--
+ name="expenseDate"
+name="amount"
+id="category"
+id="subcategory"
+id="nature"
+-->
