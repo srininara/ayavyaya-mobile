@@ -61,6 +61,9 @@ angular.module('ayavyaya', [
           controller: 'ExpenseCtrl'
         }
       },
+      params: {
+        currentExpense: null
+      },
       data: {
         operation: "Create"
       }

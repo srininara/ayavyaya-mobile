@@ -62,6 +62,15 @@ angular.module('ayavyaya.controllers.expense', [
     });
   };
 
+  $scope.copy = function(expense) {
+    var copiedExpense = angular.copy(expense);
+    copiedExpense.id = null;
+    copiedExpense.expense_date = new Date();
+    $state.go('app.create', {
+      "currentExpense": copiedExpense
+    });
+  };
+
   $scope.expensesList = [];
   $scope.index = 0;
   $scope.pageSize = 50;
