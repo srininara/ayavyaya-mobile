@@ -100,6 +100,10 @@ angular.module('ayavyaya.controllers.expense', [
     $scope.subCategoryList = category.subcategories;
   };
 
+  $scope.canSave = function(expenseForm) {
+    return expenseForm.$dirty && expenseForm.$valid;
+  };
+
   $scope.saveExpense = function(expenseForm) {
     if (expenseForm.$valid) {
       //TODO: Ionic loading indicator could be useful
@@ -108,8 +112,9 @@ angular.module('ayavyaya.controllers.expense', [
       ExpensesService.save($scope.expense, mode).then(function(
         addedExpense) {
         $state.go('app.expenses');
-      }, function() {
-        ionicToast.show("Something went wrong!", "bottom", false,
+      }, function(err) {
+        message = err ? err : "Something went wrong!";
+        ionicToast.show(message, "bottom", false,
           1500);
       });
     }

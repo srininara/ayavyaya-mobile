@@ -3,42 +3,50 @@
     <ion-content>
         <form name="expenseForm" novalidate="" ng-submit="saveExpense(expenseForm)">
             <ion-list>
-                <label class="item item-input">
+                <label class="item item-input item-stacked-label">
                     <span class="input-label">Expense Date</span >
-                    <input type="date" ng-model="expense.expense_date">
+                    <input type="date" name="expenseDate" ng-model="expense.expense_date" required>
+                    <div class="form-errors" ng-messages="expenseForm.expenseDate.$dirty&&expenseForm.expenseDate.$error">
+                      <div class="form-error" ng-message="required">Date is required</div>
+                    </div>
                 </label>
-                <label class="item item-input">
-                    <span class="input-label">Amount</span >
-                    <input type="number" placeholder="How much" ng-model="expense.amount">
-                </label>
-                <label class="item item-input">
+                <label class="item item-input item-stacked-label">
                     <span class="input-label">Description</span >
-                    <input type="text" placeholder="What did you spend on" ng-model="expense.description" >
+                    <input type="text" name="description" placeholder="What did you spend on" ng-model="expense.description" required>
+                    <div class="form-errors" ng-messages="expenseForm.description.$dirty&&expenseForm.description.$error">
+                      <div class="form-error" ng-message="required">Description is required</div>
+                    </div>
                 </label>
-                <label class="item item-input item-select">
-                    <span class="input-label">Category</span >
+                <label class="item item-input item-stacked-label">
+                    <span class="input-label">Amount</span >
+                    <input type="number" name="amount" placeholder="How much" ng-model="expense.amount" required>
+                    <div class="form-errors" ng-messages="expenseForm.amount.$dirty&&expenseForm.amount.$error">
+                      <div class="form-error" ng-message="required">Amount is required</div>
+                    </div>
+                </label>
+                <label class="item item-input-for-select item-select">
+                    <span class="input-label-for-select">Category</span >
                     <select ng-model="expense.category" ng-change="selectSubCategory(expense.category)"
                                 ng-options="category.name for category in categoryList track by category.id">
                     </select>
                 </label>
-                <label class="item item-input item-select">
-                    <span class="input-label">Sub Category</span >
+                <label class="item item-input-for-select item-select">
+                    <span class="input-label-for-select">Sub Category</span >
                     <select ng-disabled="!expense.category" ng-model="expense.subcategory"
                         ng-options="subcategory.name for subcategory in subCategoryList track by subcategory.id">
                     </select>
                 </label>
-                <label class="item item-input item-select">
-                    <span class="input-label">Nature</span >
+                <label class="item item-input-for-select item-select">
+                    <span class="input-label-for-select">Nature</span >
                     <select ng-model="expense.nature" ng-options="nature.name for nature in natureList track by nature.id">
                     </select>
                 </label>
             </ion-list>
             <div class="padding" >
-				<button class="button button-positive button-block"
+				      <button class="button button-positive button-block" ng-disabled="!canSave(expenseForm)"
 				        type="submit" >{{$state.current.data.operation}}
-				</button >
-			</div >
-
+				      </button >
+			      </div >
         </form>
     </ion-content>
 </ion-view>

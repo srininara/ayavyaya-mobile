@@ -18,7 +18,6 @@ angular.module('ayavyaya.services.expenseService', ['ayavyaya.config',
     var self = {
 
       'load': function(index, pageSize) {
-
         var d = $q.defer();
         var params = {
           index: index,
@@ -41,8 +40,10 @@ angular.module('ayavyaya.services.expenseService', ['ayavyaya.config',
           ExpenseDataAccessService.post(copyExpenseRec).then(function(
             addedExpense) {
             d.resolve(addedExpense);
-          }, function() {
-            d.reject("Something went wrong");
+          }, function(err) {
+            var message = err.data.message ? err.data.message :
+              "Something went wrong";
+            d.reject(message);
           });
         }
         if (mode === "update") {
@@ -51,8 +52,10 @@ angular.module('ayavyaya.services.expenseService', ['ayavyaya.config',
             function(updatedExpense) {
               d.resolve(updatedExpense);
             },
-            function() {
-              d.reject("Something went wrong on update");
+            function(err) {
+              var message = err.data.message ? err.data.message :
+                "Something went wrong on update";
+              d.reject(message);
             });
         }
         return d.promise;

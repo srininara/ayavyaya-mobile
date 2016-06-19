@@ -1,5 +1,6 @@
 angular.module('ayavyaya', [
   'ionic',
+  'ngMessages',
   'ayavyaya.controllers',
   'ayavyaya.services'
 ])
