@@ -1,0 +1,44 @@
+
+Android dev tips:
+1. When devices are not recognized you start getting platform not supported etc. when you try to run on android (ionic run android). If you try adb devices you will see:
+
+adb devices
+List of devices attached
+ ????????????   no permissions
+
+to resolve try this
+
+sudo adb kill-server
+sudo adb start-server
+
+This worked for me. Sometime this is not enough. You need the device to authorize usage. That worked for my other device.
+
+
+Styling tips:
+www.colourlovers.com
+www.google.com/fonts
+
+
+Current environment versions:
+
+Cordova CLI: 5.4.1
+Gulp version:  CLI version 3.9.0
+Gulp local:   Local version 3.9.1
+Ionic Framework Version: 1.3.1
+Ionic CLI Version: 1.7.15
+Ionic App Lib Version: 0.7.2
+OS: Distributor ID:	ManjaroLinux Description:	Manjaro Linux
+Node Version: v6.2.2
+
+
+
+Old environment versions:
+
+Cordova CLI: 5.4.1
+Gulp version:  CLI version 3.9.0
+Gulp local:   Local version 3.9.0
+Ionic Version: 1.2.4
+Ionic CLI Version: 1.7.13
+Ionic App Lib Version: 0.6.5
+OS: Distributor ID:	ManjaroLinux Description:	Manjaro Linux
+Node Version: v0.12.7
