@@ -1,13 +1,19 @@
-Bugs: (Order of Priority is the order in which they appear. The number before is the id of the bug (now onwards). 
-----
-B10004. The date data gets mangled on update screen - DONE
+Bugs: (Order of Priority is the order in which they appear. The number before is the id of the bug (now onwards).
+------------------------
+B10002. The tags box does not work well. Removed it - Need to reintroduce it.<<TOP>>
 B10003. The default value for category, nature etc must be determined by the server and sent explicitly. Right now I am using some logic based on negative ids.
 B10001. The config for server path should be configurable by developer from outside.
-B10002. The tags box does not work well
-B10005. On refresh of the listing the order does not comply to the order of time of insertion. It is just based on the date. This is expected based on implementation but is confusing to use.
-
 
 Regular Development Items (Order of Priority is the order in which they appear. The number before is the id of the dev item (now onwards).
 -------------------------
-D10001. Validations for entered data required on the app and server side.
+D10004. Allow for configuration of server url in the app itself - settings screen.
 D10002. Make Not Available as default in the create dropdowns for subcategory
+
+
+Completed Items
+-------------------------
+B10004. The date data gets mangled on update screen - DONE
+B10005. On refresh of the listing the order does not comply to the order of time of insertion.
+It is just based on the date. This is expected based on implementation but is confusing to use. - FIXED - Based on date and id desc. Works for now.
+D10001. Validations for entered data required on the app and server side. - Complete
+D10003. After loading 250 items don't call server - DONE
