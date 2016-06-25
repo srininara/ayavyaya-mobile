@@ -19,16 +19,23 @@ angular.module('ayavyaya.services.expenseService', ['ayavyaya.config',
 
       'load': function(index, pageSize) {
         var d = $q.defer();
-        var params = {
-          index: index,
-          size: pageSize
+        if (index >= 250) {
+          d.reject({
+            "uiError": true,
+            "errorMessage": "Scrolling too long. Try doing a different search or lookup."
+          });
+        } else {
+          var params = {
+            index: index,
+            size: pageSize
+          };
+          ExpenseDataAccessService.customGET("", params).then(function(
+            data) {
+            d.resolve(data.expenses);
+          }, function(err) {
+            d.reject(err);
+          });
         };
-        ExpenseDataAccessService.customGET("", params).then(function(data) {
-          d.resolve(data.expenses);
-        }, function(err) {
-          d.reject(err);
-        });
-
         return d.promise;
       },
       'save': function(expenseRec, mode) {

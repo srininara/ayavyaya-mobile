@@ -19,7 +19,11 @@ angular.module('ayavyaya.controllers.expense', [
       $scope.$broadcast('scroll.infiniteScrollComplete');
       $scope.$broadcast('scroll.refreshComplete');
     }, function(err) {
-      if (err.status === 400) {
+      console.log(err);
+      if (err.uiError) {
+        ionicToast.show(err.errorMessage, "middle", false, 6000);
+        $scope.canLoadMore = false;
+      } else if (err.status === 400) {
         ionicToast.show(err.data.error, "middle", false, 6000);
         $scope.canLoadMore = false;
       } else {
