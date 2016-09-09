@@ -1,11 +1,14 @@
 Bugs: (Order of Priority is the order in which they appear. The number before is the id of the bug (now onwards).
 ------------------------
 B10002. The tags box does not work well. Removed it - Need to reintroduce it.<<TOP>>
+B10006. Remove categories/subcategories in graphs which have value of 0.
 B10003. The default value for category, nature etc must be determined by the server and sent explicitly. Right now I am using some logic based on negative ids.
 B10001. The config for server path should be configurable by developer from outside.
 
 Regular Development Items (Order of Priority is the order in which they appear. The number before is the id of the dev item (now onwards).
 -------------------------
+D10005. Search for expenses
+D10006. Show nature of expenses as a graph in the dashboard
 D10004. Allow for configuration of server url in the app itself - settings screen.
 D10002. Make Not Available as default in the create dropdowns for subcategory
 

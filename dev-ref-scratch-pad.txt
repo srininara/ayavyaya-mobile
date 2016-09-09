@@ -1,3 +1,16 @@
+Basic ionic commands
+
+ionic platform add android
+ionic build android
+ionic emulate android
+ionic run android
+
+Android sdk reference change (need to find a better way):
+ayavyaya-mobile/platforms/android/CordovaLib/project.properties
+
+ayavyaya-mobile/platforms/android/project.properties:
+
+
 
 Android dev tips:
 1. When devices are not recognized you start getting platform not supported etc. when you try to run on android (ionic run android). If you try adb devices you will see:
@@ -18,8 +31,12 @@ Styling tips:
 www.colourlovers.com
 www.google.com/fonts
 
+Useful commands:
+nvm ls - list currently available node versions
 
-Current environment versions:
+
+
+Old environment versions:
 
 Cordova CLI: 5.4.1
 Gulp version:  CLI version 3.9.0
@@ -32,7 +49,7 @@ Node Version: v6.2.2
 
 
 
-Old environment versions:
+Older environment versions:
 
 Cordova CLI: 5.4.1
 Gulp version:  CLI version 3.9.0
