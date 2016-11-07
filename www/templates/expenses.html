@@ -16,7 +16,7 @@
                 <h2><span class="positive">{{expense.description || "Data Not Available"}}</span></h2>
                 <h4><span class="royal">#{{expense.category.name || "uncategorized"}} - {{expense.subcategory.name || "?" }}</span></h4>
                 <h4><span class="royal">* {{expense.nature.name || "nature not known"}}</span></h4>
-                <h4><span ng-repeat="tag in expense.tags">@{{tag.name}}</span></h4>
+                <h4><span ng-repeat="tag in expense.tags">@{{tag.name}} </span></h4>
             </ion-item>
         </ion-list>
         <ion-infinite-scroll

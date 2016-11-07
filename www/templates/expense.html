@@ -41,6 +41,13 @@
                     <select ng-model="expense.nature" ng-options="nature.name for nature in natureList track by nature.id">
                     </select>
                 </label>
+                <label class="item item-input item-stacked-label">
+                    <span class="input-label">Tags</span>
+                    <input type="text" name="tags" placeholder="Add comma separated tags to your expense" ng-model="expense.tagStr" ng-pattern="/^[a-zA-Z0-9, ]*$/">
+                    <div class="form-errors" ng-messages="expenseForm.tags.$dirty&&expenseForm.tags.$error">
+                      <div class="form-error" ng-message="pattern">Tags can be alphanumeric with spaces separated by commas</div>
+                    </div>
+                </label>
             </ion-list>
             <div class="padding" >
 				      <button class="button button-positive button-block" ng-disabled="!canSave(expenseForm)"

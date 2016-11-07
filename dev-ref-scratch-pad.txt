@@ -1,18 +1,23 @@
 Basic ionic commands
-
+--------------------
 ionic platform add android
 ionic build android
 ionic emulate android
 ionic run android
 
 Android sdk reference change (need to find a better way):
+--------------------------------------------------------
 ayavyaya-mobile/platforms/android/CordovaLib/project.properties
+ayavyaya-mobile/platforms/android/project.properties
 
-ayavyaya-mobile/platforms/android/project.properties:
-
+If you want to test again production add this to proxyUrl:
+---------------------------------------------------------
+"proxyUrl": "http://192.168.1.60:8000/ayavyaya/api/v1.0/"
+/*"proxyUrl": "http://192.168.1.60:8000/ayavyaya/api/v1.0/"*/
 
 
 Android dev tips:
+-----------------
 1. When devices are not recognized you start getting platform not supported etc. when you try to run on android (ionic run android). If you try adb devices you will see:
 
 adb devices
@@ -26,18 +31,48 @@ sudo adb start-server
 
 This worked for me. Sometime this is not enough. You need the device to authorize usage. That worked for my other device.
 
+If that does not work then -
+- add rules from (https://wiki.cyanogenmod.org/w/UDEV, https://source.android.com/source/51-android.rules) to /etc/udev/rules.d/51-android.rules
+
+- Verify your username is included in the plugdev group. Type `groups` from a terminal and look for plugdev in the listed groups.
+- If you do not see plugdev listed, you can add your username to the group with:
+`sudo gpasswd -a username plugdev`
+
+- `sudo udevadm control --reload-rules`
+- reconnect the device and try `adb devices`
 
 Styling tips:
+------------
 www.colourlovers.com
 www.google.com/fonts
 
 Useful commands:
+----------------
 nvm ls - list currently available node versions
 
 
+Current environment versions:
+----------------------------------------
+Cordova CLI: 6.3.1
+Ionic Framework Version: 1.3.1
+Ionic CLI Version: 2.1.4
+Ionic App Lib Version: 2.1.2
+OS: Distributor ID:	Ubuntu Description:	Ubuntu 16.04.1 LTS
+Node Version: v6.3.0
+
 
 Old environment versions:
+----------------------------
+Cordova CLI: 6.3.1
+Ionic Framework Version: 1.3.1
+Ionic CLI Version: 2.0.0
+Ionic App Lib Version: 2.0.0
+OS: Distributor ID:	Ubuntu Description:	Ubuntu 16.04.1 LTS
+Node Version: v6.3.0
 
+
+Older environment versions:
+------------------------
 Cordova CLI: 5.4.1
 Gulp version:  CLI version 3.9.0
 Gulp local:   Local version 3.9.1
@@ -46,16 +81,3 @@ Ionic CLI Version: 1.7.15
 Ionic App Lib Version: 0.7.2
 OS: Distributor ID:	ManjaroLinux Description:	Manjaro Linux
 Node Version: v6.2.2
-
-
-
-Older environment versions:
-
-Cordova CLI: 5.4.1
-Gulp version:  CLI version 3.9.0
-Gulp local:   Local version 3.9.0
-Ionic Version: 1.2.4
-Ionic CLI Version: 1.7.13
-Ionic App Lib Version: 0.6.5
-OS: Distributor ID:	ManjaroLinux Description:	Manjaro Linux
-Node Version: v0.12.7
